@@ -6,6 +6,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score,precision_score, recall_score,f1_score
+import pickle
 
 df=pd.read_csv('../Data/email.csv')
 #print(df.head())
@@ -40,6 +41,10 @@ print(f"Accuracy: {accuracy_score(y_test,y_pred):.2f}")
 print(f"Precision: {precision_score(y_test,y_pred):.2f}")
 print(f"Recall: {recall_score(y_test,y_pred):.2f}")
 print(f"F1: {f1_score(y_test,y_pred):.2f}")
+
+pickle.dump(tfidf,open('../models/vectorizer.pkl','wb'))
+pickle.dump(LR,open('../models/LogisticReg.pkl','wb'))
+
 
 
 
