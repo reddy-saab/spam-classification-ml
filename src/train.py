@@ -32,15 +32,15 @@ y=df['Category'].values
 
 
 x_train, x_test, y_train, y_test= train_test_split(X,y,train_size=0.8,random_state=30)
-LR= LogisticRegression()
+LR= LogisticRegression(class_weight='balanced',C=2)
 
 LR.fit(x_train,y_train)
 y_pred=LR.predict(x_test)
 
-print(f"Accuracy: {accuracy_score(y_test,y_pred):.2f}") 
-print(f"Precision: {precision_score(y_test,y_pred):.2f}")
-print(f"Recall: {recall_score(y_test,y_pred):.2f}")
-print(f"F1: {f1_score(y_test,y_pred):.2f}")
+print(f"Accuracy: {accuracy_score(y_test,y_pred):.2f}") #0.98
+print(f"Precision: {precision_score(y_test,y_pred):.2f}") #0.95
+print(f"Recall: {recall_score(y_test,y_pred):.2f}") #0.86
+print(f"F1: {f1_score(y_test,y_pred):.2f}")  #0.90
 
 pickle.dump(tfidf,open('../models/vectorizer.pkl','wb'))
 pickle.dump(LR,open('../models/LogisticReg.pkl','wb'))
